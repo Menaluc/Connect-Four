@@ -56,7 +56,7 @@ DB_PORT=3306
    node server.js
    or (if you have nodemon installed):
    npx nodemon server.js
-5.The server will start at: http://localhost:4000
+5. The server will start at: http://localhost:4000
 
 
 
