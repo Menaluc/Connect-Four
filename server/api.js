@@ -16,7 +16,7 @@ function newGame(req, res, username) {
         let boardJson = model.boardOnJson(board);
         pool.query("INSERT INTO games(redPlayer, yellowPlayer, board, turn, status) VALUES (?,?,?,?,?)", [username, null, boardJson, 'red', 'waiting'], (err, result) => {// yellow [null]
             if (err) {
-                console.error("DB Error1:", err);///
+                console.error("DB Error1:", err);
                 res.writeHead(500);
                 return;
             }
@@ -74,7 +74,6 @@ function play(req, res, gameId, col, player) {
         //check if its the current player turn
         if (result[0].turn !== player) {
             //res.writeHead(400);
-            //n
             res.writeHead(400, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ error: "Not your turn" }));
 
@@ -87,7 +86,6 @@ function play(req, res, gameId, col, player) {
         col = parseInt(col);
         if (isNaN(col) || col < 0 || col > 6) {
             //res.writeHead(400);
-            //n
             res.writeHead(400, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ error: "Invalid column" }));
 
@@ -101,7 +99,6 @@ function play(req, res, gameId, col, player) {
         //check if col is full
         if (model.isColFull(board, col)) {
             // res.writeHead(400);
-            //n
             res.writeHead(400, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ error: "Column is full" }));
             //res.end("Column is full");
@@ -115,7 +112,7 @@ function play(req, res, gameId, col, player) {
         let boardJson = model.boardOnJson(board);
         let newStatus = result[0].status;
 
-        // שינוי → בדיקת מנצח מחזירה 1/2, מתורגמת ל-red/yellow
+        // Change -> Conductor test returns 1/2, translated to red/yellow
         let winner = model.whoWin(board); // 0 / 1 / 2
         let winnerName = (winner === 1) ? "red" : (winner === 2 ? "yellow" : null);
 
@@ -125,7 +122,7 @@ function play(req, res, gameId, col, player) {
             newStatus = "finished";
         }
 
-        // שינוי → קביעת תור הבא red/yellow (לא redPlayer)
+        // Change -> Set next turn red/yellow (not redPlayer)
         let nextTurn = (player === "red") ? "yellow" : "red";
 
         //Update the board
@@ -140,7 +137,7 @@ function play(req, res, gameId, col, player) {
                 }
                 res.writeHead(200, { 'Content-Type': 'application/json' });
 
-                // שינוי → החזרת winnerName + turn אחיד
+                // Change -> return winnerName + turn uniform
                 res.end(JSON.stringify({
                     gameId,
                     board,
@@ -176,7 +173,7 @@ function getStateBoard(req, res, gameId) {
 function sendMessage(req, res, sender, text) {
     //TEST
     console.log("Trying to insert:", sender, text);
-    //TESTT
+    //TEST
     pool.query(
         "INSERT INTO messages (sender, content) VALUES (?, ?)", [sender, text], (err, result) => {
             if (err) {
@@ -205,7 +202,7 @@ function getMessages(req, res) {
     );
 }
 
-// לייצא בסוף הקובץ
+// Export at the end of the file
 exports.sendMessage = sendMessage;
 exports.getMessages = getMessages;
 exports.newGame = newGame;

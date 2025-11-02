@@ -15,7 +15,6 @@ let extensions = {
 
 //creat server:
 let server = http.createServer((req, res) => {
-    //new
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -29,17 +28,15 @@ let server = http.createServer((req, res) => {
     let q = url.parse(req.url, true).query;
     console.log(q);
     if (req.url.startsWith('/newGame')) {
-        api.newGame(req, res, q.username);// send to api  ??? q || q.usename
+        api.newGame(req, res, q.username);
     }
-    else if (req.url.startsWith('/play')) {///!
-        //api.play(req, res, q);
-        //api.play(req, res, q.gameId, q.col, q.player);//???
+    else if (req.url.startsWith('/play')) {
         api.play(req, res, q.gameId, q.col, q.player);
     }
-    else if (req.url.startsWith('/getStateBoard')) {///!!!!!!!!
+    else if (req.url.startsWith('/getStateBoard')) {
         api.getStateBoard(req, res, q.gameId);
     }
-    /// new
+
     else if (req.url.startsWith("/joinGame")) {
         api.joinGame(req, res, q.gameId, q.username);
     }
@@ -49,7 +46,7 @@ let server = http.createServer((req, res) => {
     else if (req.url.startsWith("/getMessages")) {
         api.getMessages(req, res);
     }
-    // new
+
     else {
         res.writeHead(404);
         res.end('Not found');

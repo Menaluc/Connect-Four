@@ -14,44 +14,31 @@ let connParams = {
 let pool = mysql.createPool(connParams);
 
 function createNewGame() {
-    //i= rows j=cols
     let board = [];
     for (let i = 0; i < 6; i++) {
         board.push(new Array(7).fill(0));
-        //board[i] = [];
-        //for (let j = 0; j < 7;j++) {
-        //board[i][j] = 0
-
-        //}
 
     }
     return board;
-    ///let boardJson =JSON.stringify(board);
-    //pool.query( "INSERT INTO games(gameId, board) VALUES (?,?)")
+
 }
 
 //Befor we save it we tranclete to json
 function boardOnJson(board) {
     return JSON.stringify(board);
-    //let boardInJson = JSON.stringify(board);
-    //console.log("board JSON:" + boardInJson );
-    //return boardInJson;
 }
 //back to board from Json
 function backToBoard(boardInJson) {
     let JsonToBoard = JSON.parse(boardInJson);
-    console.log("back to board:", JsonToBoard); // חשוב לא להשתמש ב +
+    console.log("back to board:", JsonToBoard);
     return JsonToBoard;
-    //let JsonToBoard = JSON.parse(boardInJson);
-    //console.log("back to board:" + JsonToBoard);
-    //return JsonToBoard ;
 }
 
 function inputDisc(board, col, playerValue) {
     if (col < 0 || col > 6) {
         return null;
     }
-    //for (let row = 5;  row >= 0; row=row --) {
+
     for (let row = 5; row >= 0; row--) {
         if (board[row][col] === 0) {
             board[row][col] = playerValue;
@@ -63,7 +50,7 @@ function inputDisc(board, col, playerValue) {
 
 //Check if col is full
 function isColFull(board, col) {
-    if (board[0][col] != 0)/// ===
+    if (board[0][col] != 0)
         return true;
     return false;
 }
