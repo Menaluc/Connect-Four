@@ -13,7 +13,6 @@ Player 1 creates a game and gets a unique code; Player 2 joins with that code. T
 | Database | MySQL |
 | Architecture | Modular (server, API, model) |
 | Environment | dotenv for configuration |
-
 ---
 
 ## 📁 Project Structure
