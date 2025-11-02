@@ -14,13 +14,14 @@ Player 1 creates a game and gets a unique code; Player 2 joins with that code. T
 | Architecture | Modular (server, API, model) |
 | Environment | dotenv for configuration |
 ---
-
 ## 📁 Project Structure
-
-'''connect-four-server
+```
+📦 connect-four-server
 ├── api.js # Game routes & logic (new game, join, play, etc.)
 ├── model.js # MySQL connection and queries
 ├── server.js # Main server file
 ├── package.json # Dependencies and scripts
 ├── .gitignore # Ignored files (e.g., .env)
-└── .env.example # Example environment variables'''
+└── .env.example # Example environment variables
+
+```
