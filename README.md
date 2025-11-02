@@ -25,3 +25,38 @@ Player 1 creates a game and gets a unique code; Player 2 joins with that code. T
 └── .env.example # Example environment variables
 
 ```
+---
+
+## 🧠 Environment Variables (`.env`)
+
+Create a `.env` file in the root folder (not uploaded to GitHub):
+PORT=4000
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=your_password
+DB_NAME=my_db
+DB_PORT=3306
+
+
+💡 *This file is private and is ignored by `.gitignore`, so your database credentials remain secure.*
+
+---
+
+## 🚀 How to Run Locally
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Menaluc/connect-four-server.git
+   cd connect-four-server
+2. *Install dependencies*
+   npm install
+3. Configure your .env file
+   Update the database credentials according to your local MySQL setup.
+4. *Run the server*
+   node server.js
+   or (if you have nodemon installed):
+   npx nodemon server.js
+5.The server will start at: http://localhost:4000
+
+
+
